@@ -41,4 +41,8 @@ jobs:
           source .env  # Load environment variables from .env file
           npm start &
           sleep 20
+      - name: Verify app is running
+        run: |
+          # Check if the application is listening on the expected port
+          while ! nc -z localhost $PORT; do sleep 1; done
 
