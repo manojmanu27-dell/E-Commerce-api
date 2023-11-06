@@ -10,7 +10,7 @@ on:
       
 env:
         PORT: ${{ secrets.PORT }}
-        
+
 jobs:
 
   build:
@@ -30,7 +30,7 @@ jobs:
 
       - name: Build and start the app
         run: |
-          PORT = $PORT
+          PORT=$PORT
           npm start
  
       
