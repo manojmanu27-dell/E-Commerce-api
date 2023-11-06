@@ -45,4 +45,5 @@ jobs:
         run: |
           # Check if the application is listening on the expected port
           while ! nc -z localhost $PORT; do sleep 1; done
-
+env:
+    PORT: ${{ secrets.PORT }}  
