@@ -25,4 +25,9 @@ jobs:
         run: npm install
 
       - name: Build and start the app
-        run: npm start
+        run: |
+          PORT = $PORT
+          npm start
+    env:
+        PORT: ${{ secrets.PORT }}
+      
