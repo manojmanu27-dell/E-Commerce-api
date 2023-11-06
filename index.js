@@ -1,10 +1,10 @@
 const express = require("express");
 const app = express();
-const port = process.env.PORT || 8080
+const PORT = process.env.PORT || 8080
 const VERSION = require("./package.json").version
-
-app.listen(port, (req, res) => {
-    console.log(`The API is listening on http://localhost:${port}`)
+console.log("Server is running on port",PORT)
+app.listen(PORT, () => {
+    console.log(`The API is listening on http://localhost:${PORT}`)
 })
 
 app.get('/', (req, res) => {
