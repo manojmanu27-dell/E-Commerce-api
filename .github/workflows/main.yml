@@ -7,6 +7,10 @@ on:
   pull_request:
     branches:
       - main
+      
+env:
+        PORT: ${{ secrets.PORT }}
+        
 jobs:
 
   build:
@@ -28,6 +32,5 @@ jobs:
         run: |
           PORT = $PORT
           npm start
-    env:
-        PORT: ${{ secrets.PORT }}
+ 
       
