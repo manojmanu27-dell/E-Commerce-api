@@ -39,4 +39,6 @@ jobs:
       - name: Build and start the app
         run: |
           source .env  # Load environment variables from .env file
-          npm start
+          npm start &
+          sleep 20
+
