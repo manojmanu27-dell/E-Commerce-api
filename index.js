@@ -1,8 +1,14 @@
 const express = require("express");
 const app = express();
-const PORT = process.env.PORT || 8080
-const VERSION = require("./package.json").version
-console.log("Server is running on port",PORT)
+const PORT = process.env.PORT || 8080;
+const VERSION = require("./package.json").version;
+const bodyParser = require('body-parser');
+const cors = require('cors');
+
+console.log("Server is running on port", PORT)
+
+app.use(cors());
+
 app.listen(PORT, () => {
     console.log(`The API is listening on http://localhost:${PORT}`)
 })
