@@ -1,0 +1,6 @@
+{
+    "jwt":{
+        "secretKey":"A6v2pT5LgH9sY1uX3wZ0oP8rK2iN7mMB",
+        "expiryTime":"60sec"
+    }
+}
