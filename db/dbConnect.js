@@ -1,5 +1,3 @@
-
-// const { MongoClient, ServerApiVersion } = require('mongodb');
 require('dotenv').config();
 const mongoose = require('mongoose');
 const userName = process.env.MONGO_DB_USERNAME;
@@ -15,23 +13,21 @@ const connectionDb = async () => {
     } catch (error) {
         console.log("error occured while conencting to db", error)
     }
+
+    // .finally(() => {
+    //     // Close the connection after creating the document
+    //     mongoose.connection.close();
+    //   });
 }
 const closeConenction = async () => {
     console.log("this func is called")
     mongoose.disconnect()
-        .then(res => {
-            console.log("connection closed successfully", res)
-        }
-        )
-        .catch(err => {
-            console.error("there is an issue while closing the connection refer", err)
-        })
 
 }
 
 module.exports = { connectionDb, closeConenction }
 
-mongoose.connection.on('connected', () => {
+mongoose.connection.on('connection', () => {
     console.log("connection is aquired")
 })
 mongoose.connection.on('error', (err) => {
