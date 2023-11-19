@@ -4,10 +4,11 @@ const PORT = process.env.PORT || 8080;
 const VERSION = require("./package.json").version;
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const { connectionDb, closeConenction } = require('./db/dbConnect');
+const { closeConenction } = require('./db/dbConnect');
 const exitHook = require('async-exit-hook');
 const helmet = require('helmet');
 console.log("Server is running on port", PORT)
+const router = require('./routes')
 
 const corsOptions = {
     "origin": "*",
@@ -19,9 +20,9 @@ const corsOptions = {
 app.options("*", cors(corsOptions))
 app.use(cors(corsOptions))
 app.use(cors());
-app.disable('x-powered-by');
-app.use(helmet.xssFilter());
-app.use(helmet.ieNoOpen());
+app.disable('x-powered-by'); // For Hiding the service provider that we are using i.e., express
+app.use(helmet.xssFilter()); // For Extra security protection
+app.use(helmet.ieNoOpen()); // For Extra security protection
 app.use(bodyParser.json({
     limit: '150mb'
 }))
@@ -33,17 +34,12 @@ app.listen(PORT, () => {
     console.log(`The API is listening on http://localhost:${PORT}`)
 })
 
-connectionDb();
 
 app.get('/', (req, res) => {
     res.status(200).send(`The Api Is running on version ${VERSION}`)
 })
-console.log(process.env.MONGO_DB_USERNAME)
-app.get("/login", (req, res) => {
-    res.status(200).json({
-        message: "This is a TEst"
-    })
-})
+
+app.use('/app',router.app)
 
 exitHook(() => {
     closeConenction().then(() => console.log("successfully closed from the exit hook"))

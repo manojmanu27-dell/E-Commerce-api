@@ -6,6 +6,10 @@ const Users = new Schema({
         type: String,
         required: true
     },
+    email: {
+        type: String,
+        required: true
+    },
     password: {
         type: String,
         required: true
@@ -21,10 +25,12 @@ const Users = new Schema({
         default: Date.now
     },
     updatedDate: {
-        type: Date
+        type: Date,
+        default: Date.now
     }
-},{
-    versionKey:false
+}, {
+    versionKey: false,
+    timestamps: true
 })
 
-module.exports = mongoose.model("Users",Users);
+module.exports = mongoose.model("Users", Users);
