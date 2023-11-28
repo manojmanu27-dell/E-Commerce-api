@@ -9,6 +9,9 @@ const exitHook = require('async-exit-hook');
 const helmet = require('helmet');
 console.log("Server is running on port", PORT)
 const router = require('./routes')
+const config = require("config");
+
+console.log(config.test)
 
 const corsOptions = {
     "origin": "*",
@@ -39,7 +42,7 @@ app.get('/', (req, res) => {
     res.status(200).send(`The Api Is running on version ${VERSION}`)
 })
 
-app.use('/app',router.app)
+app.use('/auth',router.auth)
 
 exitHook(() => {
     closeConenction().then(() => console.log("successfully closed from the exit hook"))
